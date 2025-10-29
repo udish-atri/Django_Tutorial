@@ -22,3 +22,14 @@ urlpatterns = [
     path("polls/", include("polls.urls")),
     path("admin/", admin.site.urls),
 ]
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "django_training",
+        "USER": "uk",
+        "PASSWORD": "Karma@181818181",
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
+}
