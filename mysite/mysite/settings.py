@@ -77,7 +77,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "django_training",
-        "USER": "uk",
+        "USER": "udishkum",
         "PASSWORD": "Karma@181818181",
         "HOST": "localhost",
         "PORT": "5432",
