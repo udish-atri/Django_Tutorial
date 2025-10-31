@@ -74,7 +74,6 @@ class ChoiceModelTests(TestCase):
         choice1 = Choice.objects.create(question=question, choice_text="Choice 1")
         choice2 = Choice.objects.create(question=question, choice_text="Choice 2")
 
-        question_id = question.id
         choice1_id = choice1.id
         choice2_id = choice2.id
 
@@ -256,8 +255,8 @@ class QuestionResultsViewTests(TestCase):
         The results view displays the vote count for each choice.
         """
         question = create_question(question_text="Test question?", days=-1)
-        choice1 = create_choice(question, "Choice 1", votes=10)
-        choice2 = create_choice(question, "Choice 2", votes=7)
+        create_choice(question, "Choice 1", votes=10)
+        create_choice(question, "Choice 2", votes=7)
 
         url = reverse("polls:results", args=(question.id,))
         response = self.client.get(url)
@@ -283,7 +282,7 @@ class VoteViewTests(TestCase):
 
         initial_votes = choice.votes
         url = reverse("polls:vote", args=(question.id,))
-        response = self.client.post(url, {"choice": choice.id})
+        self.client.post(url, {"choice": choice.id})
 
         choice.refresh_from_db()
         self.assertEqual(choice.votes, initial_votes + 1)
